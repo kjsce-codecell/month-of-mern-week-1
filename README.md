@@ -1,1 +1,1 @@
-# month-of-mern-week-1
+# Month Of MERN week 1 resources
