@@ -109,7 +109,7 @@ var todos = [
 ];
 ```
 
-1. Select all required elements from the `DOM`
+2. Select all required elements from the `DOM`
 
 ```js
 const list = document.getElementById("todo-list");
@@ -117,7 +117,7 @@ const form = document.getElementById("todo-form");
 const todoText = document.getElementById("todo-text");
 ```
 
-1. Lets try to render these `todos` to the DOM from our `JS`
+3. Lets try to render these `todos` to the DOM from our `JS`
 
 ```js
 /*
@@ -151,7 +151,7 @@ function renderTodo(todo) {
 }
 ```
 
-1. Lets write a function that given a `todo` adds it to our array of objects called `todos`.
+4. Lets write a function that given a `todo` adds it to our array of objects called `todos`.
 
 ```js
 function addTodo(todo) {
@@ -166,7 +166,7 @@ function addTodo(todo) {
 }
 ```
 
-1. Setup an `Event Listener` for submitting the todo
+5. Setup an `Event Listener` for submitting the todo
 
 ```js
 // listen for form to be submitted
@@ -184,7 +184,7 @@ form.addEventListener("submit", (e) => {
 });
 ```
 
-1. Lets write a function to mark a `todo` as `completed`
+6. Lets write a function to mark a `todo` as `completed`
 
 ```js
 function completeTodo(removeId) {
@@ -202,25 +202,10 @@ function completeTodo(removeId) {
 }
 ```
 
-1. Store the todos in `localStorage`
+7. Store the todos in `localStorage`
 
 ```js
 // on page load - the following functions will run
 todos = JSON.parse(localStorage.getItem("todosInMemory")) || [];
 renderTodos();
-```
-
-```
-what is react
-ehat is jsx
-building component
-reusing other elements
-props and dynamic content
-handing events
-useState
-
-
-
-challenge - rock paper scissor
-task - todo
 ```
