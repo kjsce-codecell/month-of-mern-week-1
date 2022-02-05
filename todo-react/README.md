@@ -20,3 +20,16 @@
   crossorigin="anonymous"
 ></script>
 ```
+
+2. Responsive layout from Bootstrap's [grid system](https://getbootstrap.com/docs/5.0/layout/grid/#row-columns)
+
+```html
+<div className="container">
+  <div className="row row-cols-1 row-cols-sm-1 row-cols-md-2">
+    <div className="col">{/* todo form goes here */}</div>
+    <div className="col">{/* todo list goes here */}</div>
+  </div>
+</div>
+```
+
+3.
