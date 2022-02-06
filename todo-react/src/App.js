@@ -54,22 +54,20 @@ function App() {
   };
 
   return (
-    <div className="container">
-      <div className="row row-cols-1 row-cols-sm-1 row-cols-md-2">
-        <div className="col p-4">
-          {/* todo form goes here  */}
-          <Form submitTodo={addTodo} />
-        </div>
-        <div className="col p-4">
-          {/* todo list goes here  */}
-          <ul className="list-unstyled">
-            {todos.map((todo) => (
-              <Todo key={todo.id} todo={todo} toggleTodo={toggleTodo} />
-            ))}
-          </ul>
-        </div>
+    <ResponsiveContainer>
+      <div className="col p-4">
+        {/* todo form goes here  */}
+        <Form submitTodo={addTodo} />
       </div>
-    </div>
+      <div className="col p-4">
+        {/* todo list goes here  */}
+        <ul className="list-unstyled">
+          {todos.map((todo) => (
+            <Todo key={todo.id} todo={todo} toggleTodo={toggleTodo} />
+          ))}
+        </ul>
+      </div>
+    </ResponsiveContainer>
   );
 }
 
@@ -126,4 +124,11 @@ const Todo = ({ todo, toggleTodo }) => {
     </li>
   );
 };
+
+const ResponsiveContainer = ({ children }) => (
+  <div className="container">
+    <div className="row row-cols-1 row-cols-sm-1 row-cols-md-2">{children}</div>
+  </div>
+);
+
 export default App;
