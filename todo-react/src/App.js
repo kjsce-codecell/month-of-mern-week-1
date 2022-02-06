@@ -23,11 +23,7 @@ function App() {
   /*
     This function will add the new todo to the `todos` array using `setTodos`
   */
-  const addTodo = (e, inputText) => {
-    /* prevent default behaviour of reloading 
-    the page on submitting the form */
-    e.preventDefault();
-
+  const addTodo = (inputText) => {
     /* set the state of todos by copying prev 
     state and adding the new todo obj at the end */
     setTodos((prevTodos) => [
@@ -81,10 +77,14 @@ const Form = ({ submitTodo }) => {
   const inputTextField = useRef();
 
   const handleSubmit = (e) => {
-    // call the function defined in parent
-    submitTodo(e, inputTextField.current.value);
+    // prevent default behaviour of reloading
+    // the page on submitting the form
+    e.preventDefault();
 
-    // clear the input field
+    // call the function defined in parent
+    submitTodo(inputTextField.current.value);
+
+    // clear the value of input field
     inputTextField.current.value = "";
   };
 
@@ -105,7 +105,6 @@ const Form = ({ submitTodo }) => {
 };
 
 const Todo = ({ todo, toggleTodo }) => {
-  console.log(todo.complete);
   const handleOnClick = () => {
     // call the function defined in parent
     toggleTodo(todo.id);
