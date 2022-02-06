@@ -9,6 +9,9 @@ function App() {
     localStorage.setItem("todosInMemory", JSON.stringify(todos));
   }, [todos]);
 
+  /*
+    Utility function to get ID for next todo
+  */
   const getNewId = () => {
     if (todos.length > 0) {
       return todos[todos.length - 1].id + 1;
@@ -29,7 +32,7 @@ function App() {
     state and adding the new todo obj at the end */
     setTodos((prevTodos) => [
       ...prevTodos,
-      { id: getNewId(), text: inputText },
+      { id: getNewId(), text: inputText, complete: false },
     ]);
   };
 
@@ -37,9 +40,21 @@ function App() {
     will find the todo to remove and update its `complete` 
     property to `true`
    */
-  const completeTodo = (removeId) => {
+  const toggleTodo = (toggleId) => {
+    // copy the current todos in a new variable
+    let newTodos = todos;
+
+    //Find index of specific object using findIndex method.
+    let todoIndex = todos.findIndex((todo) => todo.id === toggleId);
+
+    //Update object's complete property.
+    newTodos[todoIndex].complete = !newTodos[todoIndex].complete;
+
+    // update the state of `todos` to the new `todos`
+    setTodos([...newTodos]);
+
     // Alternatively, we can just remove that todo from the Array
-    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== removeId));
+    // setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== removeId));
   };
 
   return (
@@ -53,7 +68,7 @@ function App() {
           {/* todo list goes here  */}
           <ul className="list-unstyled">
             {todos.map((todo) => (
-              <Todo key={todo.id} todo={todo} completeTodo={completeTodo} />
+              <Todo key={todo.id} todo={todo} toggleTodo={toggleTodo} />
             ))}
           </ul>
         </div>
@@ -89,20 +104,22 @@ const Form = ({ submitTodo }) => {
   );
 };
 
-const Todo = ({ todo, completeTodo }) => {
+const Todo = ({ todo, toggleTodo }) => {
+  console.log(todo.complete);
   const handleOnClick = () => {
     // call the function defined in parent
-    completeTodo(todo.id);
+    toggleTodo(todo.id);
   };
 
   return (
     <li>
-      <div className="form-check">
+      <div className="form-check fs-3">
         {/* checkbox */}
         <input
-          className="form-check-input"
+          className="form-check-input big-checkbox"
           type="checkbox"
-          onClick={handleOnClick}
+          onChange={handleOnClick}
+          checked={todo.complete}
         />
         {/* todo */}
         <label className="form-check-label">{todo.text}</label>
