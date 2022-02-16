@@ -1,7 +1,6 @@
-import { todos } from "../models/Todo.js";
+import { Todo } from "../models/Todo.js";
 import asyncHandler from "express-async-handler";
 import { validateTodo } from "../validations/validation.js";
-
 
 // @desc   Get all todos
 // @route  GET /get-todos
@@ -35,8 +34,15 @@ exports.addTodo = asyncHandler(async (req, res) => {
     });
     await expense.save();
     console.log({ todo }, "added to mongoDB");
+    return res.status(200).json({
+      success: true,
+    });
   } catch (err) {
     console.log(err);
+    return res.status(500).json({
+      success: false,
+      error: "Could not add todo",
+    });
   }
 });
 
@@ -50,7 +56,7 @@ exports.deleteTodo = asyncHandler(async (req, res) => {
     if (!todo) {
       return res.status(404).json({
         success: false,
-        error: "No transaction found",
+        error: "No Todo found",
       });
     }
     await todo.remove();
