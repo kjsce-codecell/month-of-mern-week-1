@@ -5,7 +5,7 @@ import { validateTodo } from "../validations/validation.js";
 // @desc   Get all todos
 // @route  GET /get-todos
 // @access Public
-exports.getTodos = asyncHandler(async (req, res) => {
+export const getTodos = asyncHandler(async (req, res) => {
   try {
     const todos = await Todo.find();
     return res.status(200).json({
@@ -24,12 +24,12 @@ exports.getTodos = asyncHandler(async (req, res) => {
 // @desc   Add a todo
 // @route  POST /add-todo
 // @access Public
-exports.addTodo = asyncHandler(async (req, res) => {
+export const addTodo = asyncHandler(async (req, res) => {
   const { todo } = req.body;
   await validateTodo.validateAsync(todo);
   try {
     const { todo } = req.body;
-    const expense = new ExpenseDoc({
+    const expense = new Todo({
       todo,
     });
     await expense.save();
@@ -49,7 +49,7 @@ exports.addTodo = asyncHandler(async (req, res) => {
 // @desc   Delete a todo
 // @route  DELETE /delete-todo/:id
 // @access Public
-exports.deleteTodo = asyncHandler(async (req, res) => {
+export const deleteTodo = asyncHandler(async (req, res) => {
   const todo = await Todo.findById(req.params.id);
 
   try {

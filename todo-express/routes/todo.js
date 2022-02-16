@@ -6,4 +6,5 @@ router.route("/get-todos").get(getTodos);
 router.route("/add-todo").post(addTodo);
 router.route("/delete-todo/:id").delete(deleteTodo);
 
-module.exports = { router };
+// module.exports = { router };
+export default router;
