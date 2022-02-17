@@ -1,4 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
+import Form from "./components/Form";
+import Todo from "./components/Todo";
+import ResponsiveContainer from "./components/ResponsiveContainer";
 
 function App() {
   const [todos, setTodos] = useState(
@@ -70,65 +73,5 @@ function App() {
     </ResponsiveContainer>
   );
 }
-
-const Form = ({ submitTodo }) => {
-  const inputTextField = useRef();
-
-  const handleSubmit = (e) => {
-    // prevent default behaviour of reloading
-    // the page on submitting the form
-    e.preventDefault();
-
-    // call the function defined in parent
-    submitTodo(inputTextField.current.value);
-
-    // clear the value of input field
-    inputTextField.current.value = "";
-  };
-
-  return (
-    <form onSubmit={handleSubmit}>
-      {/* input field - to enter a todo */}
-      <input
-        ref={inputTextField}
-        className="form-control form-control-lg"
-        type="text"
-        placeholder="Your TODO"
-        required
-      />
-      {/* submit button */}
-      <input type="submit" className="btn btn-primary my-3 w-100" />
-    </form>
-  );
-};
-
-const Todo = ({ todo, toggleTodo }) => {
-  const handleOnClick = () => {
-    // call the function defined in parent
-    toggleTodo(todo.id);
-  };
-
-  return (
-    <li>
-      <div className="form-check fs-3">
-        {/* checkbox */}
-        <input
-          className="form-check-input big-checkbox"
-          type="checkbox"
-          onChange={handleOnClick}
-          checked={todo.complete}
-        />
-        {/* todo */}
-        <label className="form-check-label">{todo.text}</label>
-      </div>
-    </li>
-  );
-};
-
-const ResponsiveContainer = ({ children }) => (
-  <div className="container">
-    <div className="row row-cols-1 row-cols-sm-1 row-cols-md-2">{children}</div>
-  </div>
-);
 
 export default App;
