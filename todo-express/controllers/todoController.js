@@ -1,4 +1,4 @@
-import { Todo } from "../models/Todo.js";
+import Todo from "../models/Todo.js";
 import asyncHandler from "express-async-handler";
 import { validateTodo } from "../validations/validation.js";
 
